@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Fluwend — Design Tokens
+  Tema: dark premium (único tema do site).
+  Referência: BRAND.md
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Superfícies */
+  --background: #05070a;
+  --surface: #0e131b;
+  --surface-elevated: #161d28;
+
+  /* Texto */
+  --foreground: #f5f7fa;
+  --muted-foreground: #98a4b4;
+
+  /* Marca */
+  --primary: #1667ff;
+  --primary-hover: #0b54db;
+  --primary-foreground: #ffffff;
+  --brand-cyan: #22d3ee;
+  --brand-cyan-foreground: #05070a;
+
+  /* Estrutura */
+  --border: #232c3a;
+  --input: #232c3a;
+  --ring: #1667ff;
+
+  /* Aliases shadcn/ui */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-elevated);
+  /* Em shadcn/ui, `accent` é superfície de hover — não é o ciano da marca. */
+  --accent: var(--surface-elevated);
+  --accent-foreground: var(--foreground);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-cyan-foreground: var(--brand-cyan-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
+
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+
+  /* Ritmo vertical das seções — respiro é regra de design, não exceção */
+  --spacing-section: 7.5rem;
+  --spacing-section-lg: 11rem;
+
+  --shadow-soft: 0 24px 64px -32px rgb(0 0 0 / 0.85);
+  --shadow-glow: 0 0 80px -20px rgb(22 103 255 / 0.45);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    /* O scroll suave é controlado pelo Lenis; CSS smooth conflitaria. */
+    scroll-behavior: auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background-image: linear-gradient(
+      100deg,
+      var(--foreground) 0%,
+      var(--primary) 55%,
+      var(--brand-cyan) 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      100deg,
+      var(--primary) 0%,
+      var(--brand-cyan) 100%
+    );
+  }
+
+  /* Vidro reservado a elementos premium (DESIGN.md) */
+  .glass {
+    background-color: color-mix(in oklab, var(--surface-elevated) 60%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
