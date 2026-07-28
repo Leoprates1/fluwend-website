@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -15,6 +15,11 @@ type RevealProps = {
 /**
  * Entrada suave ao entrar na viewport.
  * Movimento curto e duração longa — nada salta (DESIGN.md).
+ *
+ * O respeito a `prefers-reduced-motion` vem do `MotionConfig reducedMotion="user"`
+ * aplicado na raiz: o deslocamento é descartado e resta apenas o fade.
+ * A árvore renderizada é sempre a mesma no servidor e no cliente — qualquer
+ * ramificação aqui causaria erro de hidratação.
  */
 export function Reveal({
   children,
@@ -22,18 +27,12 @@ export function Reveal({
   delay = 0,
   distance = 24,
 }: RevealProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={cn(className)}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={cn(className)}
       initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-96px" }}
+      viewport={{ once: true, margin: "-64px" }}
       transition={{
         duration: 1,
         delay,
