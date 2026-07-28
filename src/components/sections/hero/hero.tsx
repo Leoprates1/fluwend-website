@@ -5,13 +5,12 @@ import { ArrowDownRight, MessageCircle } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
+import { EASE } from "@/lib/motion";
 import { siteConfig } from "@/lib/site";
 import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
 import { HeroBackground } from "./hero-background";
 import { ScrollIndicator } from "./scroll-indicator";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 const stagger: Variants = {
   hidden: {},

@@ -1,6 +1,8 @@
 "use client";
 
 import { m } from "framer-motion";
+
+import { EASE } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -36,7 +38,7 @@ export function Reveal({
       transition={{
         duration: 1,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import { MessageCircle } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
+import { EASE } from "@/lib/motion";
 import { siteConfig } from "@/lib/site";
 import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ export function SiteHeader() {
     <m.header
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, ease: EASE }}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500",
         isScrolled
