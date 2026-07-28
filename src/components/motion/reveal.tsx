@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -28,7 +28,7 @@ export function Reveal({
   distance = 24,
 }: RevealProps) {
   return (
-    <motion.div
+    <m.div
       className={cn(className)}
       initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -40,6 +40,6 @@ export function Reveal({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
