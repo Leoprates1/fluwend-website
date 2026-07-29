@@ -89,8 +89,8 @@
   --radius-2xl: calc(var(--radius) + 16px);
 
   /* Ritmo vertical das seções — respiro é regra de design, não exceção */
-  --spacing-section: 7.5rem;
-  --spacing-section-lg: 11rem;
+  --spacing-section: 6.5rem;
+  --spacing-section-lg: 9.5rem;
 
   --shadow-soft: 0 24px 64px -32px rgb(0 0 0 / 0.85);
   --shadow-glow: 0 0 80px -20px rgb(22 103 255 / 0.45);

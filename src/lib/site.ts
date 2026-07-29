@@ -37,7 +37,8 @@ export const siteConfig = {
     { label: "Serviços", href: "#servicos" },
     { label: "Diferenciais", href: "#diferenciais" },
     { label: "Processo", href: "#processo" },
-    { label: "Contato", href: "#contato" },
+    { label: "Sobre", href: "#sobre" },
+    { label: "Dúvidas", href: "#faq" },
   ],
 } as const;
 

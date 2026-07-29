@@ -64,12 +64,22 @@ O `BRAND.md` foi alinhado a essa decisão — o posicionamento anterior ("Automa
 
 ---
 
-## Pendências de informação (bloqueiam o conteúdo final)
+## Decisões de implementação
 
-- [ ] Número de WhatsApp comercial.
-- [ ] E-mail de destino do formulário e serviço de envio.
-- [ ] Domínio definitivo.
-- [ ] Cidade / região de atuação (impacta SEO local e Google Meu Negócio).
-- [ ] Redes sociais e razão social/CNPJ para o rodapé.
-- [ ] Existe algum case, cliente ou depoimento autorizado a ser publicado?
-- [ ] Logo em versão escura, símbolo isolado e favicon.
+- **Formulário de contato:** sem backend definido, o formulário monta a mensagem e abre o WhatsApp já preenchido, em vez de simular um envio. Trocar o corpo de `handleSubmit` quando houver serviço de e-mail ou CRM.
+- **"Saiba mais" dos serviços:** aponta para o WhatsApp citando o serviço, já que páginas por serviço são fase 2.
+- **Sem cases nem números:** nenhuma métrica, cliente ou depoimento aparece no site — não há material comprovável e o briefing proíbe promessas irreais.
+
+---
+
+## Pendências de informação
+
+- [x] Número de WhatsApp comercial.
+- [x] E-mail de contato (`fluwend@gmail.com` — provisório, trocar pelo profissional).
+- [x] Cidade / região de atuação.
+- [ ] Domínio definitivo (hoje `NEXT_PUBLIC_SITE_URL` aponta para `fluwend.com.br`).
+- [ ] Redes sociais (o rodapé já exibe assim que forem preenchidas em `siteConfig.social`).
+- [ ] CNPJ / razão social completa, se o rodapé precisar exibir.
+- [ ] Logo vetorial (SVG) — hoje o header usa o símbolo em PNG recortado da arte original.
+- [ ] Cases, clientes ou depoimentos autorizados.
+- [ ] Ferramenta de analytics.

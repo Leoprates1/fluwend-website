@@ -6,6 +6,7 @@ import { MessageCircle } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/layout/logo";
+import { MobileNav } from "@/components/layout/mobile-nav";
 import { Button } from "@/components/ui/button";
 import { EASE } from "@/lib/motion";
 import { siteConfig } from "@/lib/site";
@@ -58,17 +59,25 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Button asChild variant="glass" size="sm" className="rounded-full">
-          <a
-            href={whatsappLink(whatsappMessages.default)}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="flex items-center gap-3">
+          <Button
+            asChild
+            variant="glass"
+            size="sm"
+            className="hidden rounded-full sm:inline-flex"
           >
-            <MessageCircle aria-hidden="true" />
-            <span className="hidden sm:inline">Falar no WhatsApp</span>
-            <span className="sm:hidden">WhatsApp</span>
-          </a>
-        </Button>
+            <a
+              href={whatsappLink(whatsappMessages.default)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle aria-hidden="true" />
+              Falar no WhatsApp
+            </a>
+          </Button>
+
+          <MobileNav />
+        </div>
       </Container>
     </m.header>
   );

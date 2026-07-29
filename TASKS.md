@@ -11,41 +11,51 @@
 
 ## Fundação
 
-- [x] Inicializar Next.js 15 + TypeScript + Tailwind v4 (pnpm)
-- [x] Configurar shadcn/ui
+- [x] Next.js 15 + TypeScript + Tailwind v4 (pnpm)
+- [x] shadcn/ui
 - [x] Design tokens (cores, tipografia, espaçamento, radius)
 - [x] Fontes via next/font (Sora + Inter)
 - [x] Estrutura de pastas e layout base
-- [x] Lenis (scroll suave) + respeito a `prefers-reduced-motion`
-- [x] Config institucional única (`src/lib/site.ts`) e helper de WhatsApp
-- [x] Metadata, robots, sitemap e dados estruturados
+- [x] Lenis + respeito a `prefers-reduced-motion`
+- [x] Config institucional única e helper de WhatsApp
 
 ## Desenvolvimento
 
-- [ ] Header transparente com estado de scroll
-- [ ] Hero 100vh
-- [ ] Serviços (6 cards)
-- [ ] Diferenciais
-- [ ] Processo
-- [ ] CTA + Contato
-- [ ] Formulário com validação
-- [ ] Integração WhatsApp (mensagem pré-preenchida)
-- [ ] Footer
-- [ ] Motion das seções (reveal on scroll)
-- [ ] Responsividade mobile/tablet/desktop
+- [x] Header transparente com estado de scroll
+- [x] Menu mobile
+- [x] Hero 100svh cinematográfico
+- [x] Serviços (6 cards premium)
+- [x] Diferenciais (comparativo + pilares)
+- [x] Como funciona (4 etapas)
+- [x] Sobre a Fluwend
+- [x] CTA principal + formulário
+- [x] FAQ (accordion acessível)
+- [x] Footer
+- [x] Motion das seções
+- [x] Responsividade
 
 ## Conteúdo
 
-- [ ] Textos finais de todas as seções
-- [ ] Dados de contato reais
-- [ ] Logo escura, símbolo, favicon
-- [ ] Imagem Open Graph
+- [x] Textos de todas as seções
+- [x] Dados de contato reais
+- [x] Símbolo e favicon
+- [x] Imagem Open Graph
+- [ ] Logo vetorial (SVG) para o header
+- [ ] Redes sociais
+- [ ] Cases e depoimentos (quando houver material autorizado)
 
 ## Revisão
 
-- [ ] SEO (metadata, OG, sitemap, robots, dados estruturados)
-- [ ] Performance (Lighthouse ≥ 90 mobile)
-- [ ] Acessibilidade (contraste AA, foco visível, navegação por teclado)
-- [ ] Analytics
+- [x] SEO (metadata, OG, sitemap, robots, JSON-LD, manifest)
+- [x] Performance (LazyMotion, fundo em CSS, fontes self-hosted)
+- [x] Acessibilidade (hierarquia, foco, contraste, reduced motion)
+- [ ] Analytics (definir ferramenta)
 - [ ] Deploy na Vercel
 - [ ] Domínio apontado
+- [ ] Google Search Console
+
+## Fase 2 (fora do escopo atual)
+
+- [ ] Páginas por serviço
+- [ ] Blog
+- [ ] Seção de cases

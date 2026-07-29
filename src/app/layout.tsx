@@ -4,7 +4,11 @@ import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { siteConfig } from "@/lib/site";
-import { organizationSchema } from "@/lib/structured-data";
+import {
+  faqSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/structured-data";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,7 +20,8 @@ const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600", "700"],
+  // Só os pesos realmente usados: títulos em 600, rótulos em 400.
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -83,7 +88,11 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema()),
+            __html: JSON.stringify([
+              organizationSchema(),
+              websiteSchema(),
+              faqSchema(),
+            ]),
           }}
         />
       </body>
