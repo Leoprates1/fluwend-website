@@ -1,0 +1,36 @@
+# Dependências e artefatos — reinstalados/reconstruídos dentro da imagem
+node_modules
+.next
+out
+build
+.pnpm-store
+
+# Controle de versão e ferramentas
+.git
+.gitignore
+.vscode
+.idea
+
+# Ambiente — as variáveis entram por build arg / EasyPanel
+.env
+.env.*
+!.env.example
+
+# Documentação e material de discovery (não entram no build)
+01_DISCOVERY
+prompts
+references
+*.md
+!README.md
+
+# Logs e temporários
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml

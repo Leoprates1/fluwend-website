@@ -50,8 +50,9 @@
 - [x] Performance (LazyMotion, fundo em CSS, fontes self-hosted)
 - [x] Acessibilidade (hierarquia, foco, contraste, reduced motion)
 - [ ] Analytics (definir ferramenta)
-- [ ] Deploy na Vercel
-- [ ] Domínio apontado
+- [x] Empacotamento Docker (multi-stage, standalone) para VPS + EasyPanel
+- [ ] Deploy na VPS Hostinger via EasyPanel
+- [ ] Domínio apontado + HTTPS
 - [ ] Google Search Console
 
 ## Fase 2 (fora do escopo atual)

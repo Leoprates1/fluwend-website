@@ -1,0 +1,20 @@
+# Uso local: validar a imagem de produção antes de subir para a VPS.
+# No EasyPanel este arquivo não é necessário — lá basta o Dockerfile.
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Em teste local, aponte para o endereço local; em produção, o domínio.
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    image: fluwend-website:latest
+    container_name: fluwend-website
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0

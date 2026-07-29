@@ -30,7 +30,9 @@ Lucide React
 
 ## Deploy
 
-Vercel
+VPS Hostinger + EasyPanel (Docker, imagem multi-stage com `output: standalone`)
+
+Vercel permanece como alternativa suportada.
 
 ## Gerenciador de Pacotes
 

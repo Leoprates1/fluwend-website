@@ -69,6 +69,7 @@ O `BRAND.md` foi alinhado a essa decisão — o posicionamento anterior ("Automa
 - **Formulário de contato:** sem backend definido, o formulário monta a mensagem e abre o WhatsApp já preenchido, em vez de simular um envio. Trocar o corpo de `handleSubmit` quando houver serviço de e-mail ou CRM.
 - **"Saiba mais" dos serviços:** aponta para o WhatsApp citando o serviço, já que páginas por serviço são fase 2.
 - **Sem cases nem números:** nenhuma métrica, cliente ou depoimento aparece no site — não há material comprovável e o briefing proíbe promessas irreais.
+- **Hospedagem:** VPS Hostinger com EasyPanel, via imagem Docker multi-stage (`output: standalone`). A URL pública entra como *build argument*, porque `NEXT_PUBLIC_SITE_URL` é embutida na geração das páginas estáticas.
 
 ---
 

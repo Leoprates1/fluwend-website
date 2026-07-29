@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Empacota o servidor e apenas as dependências realmente usadas em
+   * `.next/standalone`. É o que permite a imagem Docker rodar sem
+   * `node_modules` completo. Não altera o comportamento do site.
+   */
+  output: "standalone",
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
