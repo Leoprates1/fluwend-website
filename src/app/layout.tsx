@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 
 import "./globals.css";
+import { Analytics } from "@/components/analytics";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { siteConfig } from "@/lib/site";
 import {
@@ -85,6 +86,7 @@ export default function RootLayout({
           Pular para o conteúdo
         </a>
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

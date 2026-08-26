@@ -36,6 +36,15 @@ FROM base AS builder
 # Defini-la apenas em runtime não muda o HTML já gerado.
 ARG NEXT_PUBLIC_SITE_URL=https://fluwend.com.br
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+
+# Medição (GA4 e Meta Pixel). Mesma regra da URL acima: por serem NEXT_PUBLIC_*,
+# precisam existir no BUILD — informá-las só em runtime no EasyPanel não faz o
+# script aparecer no HTML. Vazias por padrão: sem ID, nada é renderizado.
+ARG NEXT_PUBLIC_GA_ID=
+ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
+ARG NEXT_PUBLIC_FB_PIXEL_ID=
+ENV NEXT_PUBLIC_FB_PIXEL_ID=$NEXT_PUBLIC_FB_PIXEL_ID
+
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
