@@ -28,6 +28,23 @@ const rise: Variants = {
   },
 };
 
+/** O título não sobe inteiro: cada linha emerge da própria fenda. */
+const headline: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14 },
+  },
+};
+
+const lineRise: Variants = {
+  hidden: { opacity: 0, y: "46%" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.05, ease: EASE },
+  },
+};
+
 export function Hero() {
   return (
     <section
@@ -55,12 +72,26 @@ export function Hero() {
             </span>
           </m.p>
 
+          {/*
+            As fendas: `overflow-hidden` corta a linha enquanto ela sobe. O
+            padding evita que a máscara coma descendentes (g, ç) e o brilho do
+            gradiente; a margem negativa devolve o alinhamento à esquerda.
+          */}
           <m.h1
-            variants={rise}
+            variants={headline}
             className="mt-9 text-[clamp(2.5rem,7.2vw,5.5rem)] leading-[1.03] font-semibold"
           >
-            Transformamos empresas em{" "}
-            <span className="text-gradient-brand">negócios inteligentes</span>.
+            <span className="-mx-[0.15em] block overflow-hidden px-[0.15em] pt-[0.06em] pb-[0.14em]">
+              <m.span variants={lineRise} className="block">
+                Transformamos empresas em
+              </m.span>
+            </span>
+            <span className="-mx-[0.15em] block overflow-hidden px-[0.15em] pt-[0.06em] pb-[0.14em]">
+              <m.span variants={lineRise} className="block">
+                <span className="text-gradient-live">negócios inteligentes</span>
+                .
+              </m.span>
+            </span>
           </m.h1>
 
           <m.p

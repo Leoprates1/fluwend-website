@@ -179,11 +179,38 @@
     backdrop-filter: blur(16px) saturate(140%);
     border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
   }
+
+  /*
+    Variante viva do gradiente da marca — o degradê atravessa o texto devagar.
+    Deliberadamente separada de `.text-gradient-brand`, que é usada em outras
+    seis seções e deve continuar estática: aqui só a frase do Hero se move.
+  */
+  .text-gradient-live {
+    background-image: linear-gradient(
+      100deg,
+      var(--foreground) 0%,
+      var(--primary) 40%,
+      var(--brand-cyan) 62%,
+      var(--foreground) 100%
+    );
+    background-size: 220% 100%;
+    background-clip: text;
+    color: transparent;
+    animation: brand-slide 9s linear infinite;
+  }
 }
 
 /* ---------------------------------------------------------------
    Movimento ambiente do fundo — CSS puro, sem custo de JavaScript.
-   As durações são longas de propósito: o fundo respira, não chama atenção.
+
+   Calibragem revista em 03/09/2026. As durações anteriores (28s e 34s,
+   deslocando 4% da tela) eram longas ao ponto de o movimento não existir
+   para quem passa seis segundos no Hero: em 2026-09-03 medimos que a aurora
+   percorria menos de 2% do caminho no tempo real de visita. O ciclo caiu
+   para 13s–16s e o deslocamento subiu para 9%–11%.
+
+   A regra do DESIGN.md continua valendo: nada pisca, gira ou salta. O que
+   mudou é a escala do mesmo movimento, não a natureza dele.
    --------------------------------------------------------------- */
 
 @keyframes aurora-drift {
@@ -192,27 +219,57 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(4%, -3%, 0) scale(1.12);
+    transform: translate3d(9%, -7%, 0) scale(1.2);
   }
 }
 
 @keyframes aurora-drift-alt {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1.05);
+    transform: translate3d(0, 0, 0) scale(1.08);
   }
   50% {
-    transform: translate3d(-5%, 4%, 0) scale(0.95);
+    transform: translate3d(-11%, 8%, 0) scale(0.9);
+  }
+}
+
+/* Névoa: volumes largos e baixos, atravessando em direções opostas. */
+@keyframes fog-drift-a {
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10%, -6%, 0) scale(1.25);
+  }
+}
+
+@keyframes fog-drift-b {
+  0%,
+  100% {
+    transform: translate3d(4%, 4%, 0) scale(1.15);
+  }
+  50% {
+    transform: translate3d(-9%, -3%, 0) scale(0.92);
+  }
+}
+
+@keyframes brand-slide {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
   }
 }
 
 @keyframes horizon-breathe {
   0%,
   100% {
-    opacity: 0.35;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.75;
+    opacity: 0.95;
   }
 }
 
@@ -232,17 +289,27 @@
 
 @layer utilities {
   .animate-aurora {
-    animation: aurora-drift 28s ease-in-out infinite;
+    animation: aurora-drift 13s ease-in-out infinite;
     will-change: transform;
   }
 
   .animate-aurora-alt {
-    animation: aurora-drift-alt 34s ease-in-out infinite;
+    animation: aurora-drift-alt 16s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-fog {
+    animation: fog-drift-a 17s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-fog-alt {
+    animation: fog-drift-b 21s ease-in-out infinite;
     will-change: transform;
   }
 
   .animate-horizon {
-    animation: horizon-breathe 9s ease-in-out infinite;
+    animation: horizon-breathe 5.5s ease-in-out infinite;
   }
 
   .animate-scroll-hint {
@@ -268,6 +335,56 @@
   /* Grão de filme: tira o aspecto "digital chapado" dos gradientes. */
   .bg-grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /*
+    Camadas que seguem o cursor.
+    As coordenadas chegam em --pointer-x / --pointer-y, escritas no máximo uma
+    vez por quadro pelo componente <HeroPointer>. Sem mouse (toque) ou com
+    `prefers-reduced-motion`, o componente não renderiza e estas classes nunca
+    entram na página — por isso os valores padrão abaixo já compõem algo
+    apresentável caso alguém as use sem o componente.
+  */
+  .pointer-halo {
+    background: radial-gradient(
+      420px 420px at var(--pointer-x, 50%) var(--pointer-y, 40%),
+      color-mix(in oklab, var(--primary) 34%, transparent) 0%,
+      color-mix(in oklab, var(--brand-cyan) 16%, transparent) 38%,
+      transparent 68%
+    );
+    mix-blend-mode: screen;
+  }
+
+  /*
+    A malha acende ao redor do cursor e apaga atrás dele.
+    O passo de 72px é o mesmo de `.bg-grid` de propósito: as duas grades
+    precisam coincidir, senão a versão acesa aparece deslocada da apagada.
+  */
+  .grid-reveal {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--brand-cyan) 42%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--brand-cyan) 42%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(
+      240px 240px at var(--pointer-x, 50%) var(--pointer-y, 40%),
+      black 0%,
+      rgb(0 0 0 / 0.55) 42%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      240px 240px at var(--pointer-x, 50%) var(--pointer-y, 40%),
+      black 0%,
+      rgb(0 0 0 / 0.55) 42%,
+      transparent 72%
+    );
   }
 }
 
