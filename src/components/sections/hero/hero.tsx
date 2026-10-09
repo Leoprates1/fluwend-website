@@ -32,6 +32,7 @@ export function Hero() {
     let alvo = 0;
     let atual = 0;
     let zoomBase = 1;
+    let zoomFim = 0.8;
     let quadro = 0;
     const largo = () => window.innerWidth >= 768;
 
@@ -45,6 +46,10 @@ export function Hero() {
       // No computador o androide começa à direita, abrindo espaço para o título.
       el.style.setProperty("--desloca", largo() ? (16 * (1 - entre(p, 0.2, 0.45))).toFixed(2) : "0");
       zoomBase = largo() ? 1.16 - 0.16 * entre(p, 0.2, 0.45) : 1;
+      // Em tela estreita o vídeo é cortado nas laterais. O texto da logo ocupa uns 42% da
+      // largura do vídeo, então no fim ele encolhe o bastante para caber inteiro na tela.
+      const larguraVideo = Math.max(window.innerWidth, (window.innerHeight * 16) / 9);
+      zoomFim = Math.min(0.8, (0.86 * window.innerWidth) / (0.42 * larguraVideo));
       el.style.setProperty("--ob", (entre(p, 0.42, 0.52) * (1 - entre(p, 0.7, 0.78))).toFixed(3));
       el.style.setProperty("--oc", entre(p, 0.9, 0.98).toFixed(3));
     };
@@ -55,7 +60,7 @@ export function Hero() {
       // No fim o vídeo encolhe, para a logo não ficar atrás do botão. Segue o tempo real
       // do vídeo: ali o quadro já é preto, igual ao fundo do palco, e a borda não aparece.
       const fim = entre(atual, 0.86, 0.95);
-      el.style.setProperty("--zoom", (zoomBase - 0.2 * fim).toFixed(3));
+      el.style.setProperty("--zoom", (zoomBase + (zoomFim - zoomBase) * fim).toFixed(3));
       const duracao = video.duration;
       if (Number.isFinite(duracao) && duracao > 0) {
         const t = Math.min(duracao - 0.05, atual * duracao);
